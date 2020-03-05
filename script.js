@@ -9,12 +9,17 @@ const winSets = [
     [2,5,8]
 ];
 
+let currentPlayer = "X";
+
+document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+
 function handleClick(clickedSquareEvent)
 {
     const squareClicked = clickedSquareEvent.target;
     const squareClickedId = parseInt(
     squareClicked.getAttribute("id")
     );
+    console.log(clickedSquareEvent.target);
 }
 
 
