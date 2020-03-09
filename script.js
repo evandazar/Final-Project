@@ -42,7 +42,10 @@ function handleCurrentPlayer(squareClicked, squareClickedId)
 {
     currentGame[squareClickedId] = currentPlayer;
 }
-
+function handlePlayerSwitch()
+{
+    currentPlayer = currentPlayer == "X" ? "O" : "X";
+}
 
 document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
 
