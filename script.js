@@ -22,6 +22,34 @@ const catsGame = () => "Cats Game";
 
 //const squareId = (square) => Number.parseInt(square.id.replace("square-", ""));
 
+function handleWinCon() {
+    let playerWon = false;
+    for (let i = 0; i <= winSets.length-1; i++)
+    {
+        const winCon = winSets[i];
+        let win1 = currentGame[winCon[0]];
+        let win2 = currentGame[winCon[1]];
+        let win3 = currentGame[winCon[2]];
+        if (win1 == "" || win2 == "" || win3 == "")
+        {
+            continue;
+        }
+        if (win1 == win2 && win2 == win3)
+        {
+            playerWon = true;
+            break;
+        }
+    }
+    if (playerWon)
+    {
+        alert(winMessage());
+        console.log(currentPlayer + " has won")
+        GameOn = false;
+        document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
+        return;
+    }
+    handlePlayerSwitch();
+}
 
 function handleClick(clickedSquareEvent)
 {
