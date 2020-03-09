@@ -38,6 +38,10 @@ function handleClick(clickedSquareEvent)
     handleCurrentPlayer(squareClicked, squareClickedId);
     handleWinCon();
 }
+function handleCurrentPlayer(squareClicked, squareClickedId)
+{
+    currentGame[squareClickedId] = currentPlayer;
+}
 
 
 document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
