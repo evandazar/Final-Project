@@ -48,6 +48,14 @@ function handleWinCon() {
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
         return;
     }
+    let drawGame = !currentGame.includes("");
+    if (drawGame)
+    {
+        alert(catsGame());
+        GameOn = false;
+        document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
+        return;
+    }
     handlePlayerSwitch();
 }
 
