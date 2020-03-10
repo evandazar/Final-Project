@@ -66,6 +66,10 @@ function handleClick(clickedSquareEvent)
     const squareClickedId = Number.parseInt(
     squareClicked.id.replace("square-", "")
     );
+    if (squareClicked.innerText != "")
+    {
+        squareClicked.removeEventListener('click', handleClick);
+    } 
     if (currentGame[squareClickedId] != "" || !GameOn)
     {
         return;
