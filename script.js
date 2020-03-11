@@ -24,8 +24,6 @@ const winMessage = () => currentPlayer + " has won";
 
 const catsGame = () => "Cats Game";
 
-//const squareId = (square) => Number.parseInt(square.id.replace("square-", ""));
-
 function handleWinCon() {
     let playerWon = false;
     for (let i = 0; i <= winSets.length-1; i++)
