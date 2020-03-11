@@ -10,6 +10,10 @@ const winSets = [
 ];
 let currentPlayer = "X";
 
+let getScoreX = document.getElementById("scoreboard-x");
+
+let getScoreO = document.getElementById("scoreboard-o");
+
 let squareGet = document.getElementById("game-square");
 
 let currentGame = ["", "", "", "", "", "", "", "", ""];
@@ -42,10 +46,10 @@ function handleWinCon() {
     }
     if (playerWon)
     {
-        alert(winMessage());
         console.log(currentPlayer + " has won")
         GameOn = false;
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
+        setTimeout(alert(winMessage()),100);
         return;
     }
     let drawGame = !currentGame.includes("");
@@ -66,12 +70,17 @@ function handleClick(clickedSquareEvent)
     const squareClickedId = Number.parseInt(
     squareClicked.id.replace("square-", "")
     );
+    if (squareClicked.innerText != "")
+    {
+        squareClicked.removeEventListener('click', handleClick);
+    } 
     if (currentGame[squareClickedId] != "" || !GameOn)
     {
         return;
     }
     console.log(squareClickedId);
     handleCurrentPlayer(squareClicked, squareClickedId);
+    //setTimeout(handleWinCon(), 25);
     handleWinCon();
 }
 function handleCurrentPlayer(squareClicked, squareClickedId)
