@@ -16,6 +16,8 @@ let getScoreO = document.getElementById("scoreboard-o");
 
 let squareGet = document.getElementById("game-square");
 
+let restartGet = document.getElementById("button-play-again");
+
 let currentGame = ["", "", "", "", "", "", "", "", ""];
 
 let GameOn = true;
@@ -93,6 +95,8 @@ const defaultState = () =>
 {
     squareGet.innerText = "";
 }
+
+restartGet.addEventListener("click", defaultState);
 
 document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
 
