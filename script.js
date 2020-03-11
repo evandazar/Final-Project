@@ -89,6 +89,10 @@ function handlePlayerSwitch()
 {
     currentPlayer = currentPlayer == "X" ? "O" : "X";
 }
+const defaultState = () =>
+{
+    squareGet.innerText = "";
+}
 
 document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
 
