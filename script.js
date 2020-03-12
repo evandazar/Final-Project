@@ -32,6 +32,23 @@ const winMessage = () => currentPlayer + " has won";
 
 const catsGame = () => "Cats Game";
 
+restartGet.addEventListener("click", defaultState);
+
+updateScoreboard();
+
+document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+
+function defaultState()
+{
+    console.log("button has been clicked")
+    currentGame = ["", "", "", "", "", "", "", "", ""];
+    document.querySelectorAll(".game-square").forEach(square => square.innerText = "");
+    document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+    currentPlayer = "X";
+    winnerGet.innerText = "";
+    GameOn = true;
+}
+
 function handleWinCon() {
     let playerWon = false;
     for (let i = 0; i <= winSets.length-1; i++)
@@ -56,11 +73,8 @@ function handleWinCon() {
         winnerGet.innerText = currentPlayer;
         GameOn = false;
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
-        //setTimeout(alert(winMessage()),100);
         if (currentPlayer == "X")
         {
-            
-            //scoreX += 1;
             if (localStorage.getItem("scoreX")== null)
             {
                 localStorage.setItem("scoreX", 1);
@@ -71,12 +85,10 @@ function handleWinCon() {
                 currentScoreX++;
                 localStorage.setItem("scoreX", currentScoreX);
             }
-            //console.log(getScoreX.innerText);
         console.log(getScoreX.innerText);
         }
-        else //if (currentPlayer = "O")
+        else 
         {
-            //scoreO += 1;
             if (localStorage.getItem("scoreO")== null)
             {
                 localStorage.setItem("scoreO", 1);
@@ -95,7 +107,6 @@ function handleWinCon() {
     let drawGame = !currentGame.includes("");
     if (drawGame)
     {
-        //alert(catsGame());
         GameOn = false;
         winnerGet.innerText = "Cats Game!"
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
@@ -115,13 +126,8 @@ function handleClick(clickedSquareEvent)
     {
         squareClicked.removeEventListener('click', handleClick);
     } 
-    /*if (currentGame[squareClickedId] != "" || !GameOn)
-    {
-        return;
-    }*/
     console.log(squareClickedId);
     handleCurrentPlayer(squareClicked, squareClickedId);
-    //setTimeout(handleWinCon(), 25);
     handleWinCon();
 }
 function handleCurrentPlayer(squareClicked, squareClickedId)
@@ -132,20 +138,6 @@ function handlePlayerSwitch()
 {
     currentPlayer = currentPlayer == "X" ? "O" : "X";
 }
-function defaultState()
-{
-    console.log("button has been clicked")
-    currentGame = ["", "", "", "", "", "", "", "", ""];
-    document.querySelectorAll(".game-square").forEach(square => square.innerText = "");
-    document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
-    currentPlayer = "X";
-    winnerGet.innerText = "";
-    GameOn = true;
-}
-
-restartGet.addEventListener("click", defaultState);
-
-updateScoreboard();
 
 function updateScoreboard()
 {
@@ -159,69 +151,4 @@ function updateScoreboard()
     }
 }
 
-document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
 
-//const listenersEnabled = () => grid().forEach(square => square.addEventListener("click", handleClick));
-
-//const grid = () => Array.from(document.getElementsByClassName("game-square"));
-
-//document.querySelectorAll("game-square").forEach(square => square.addEventListener("click", handleClick));
-
-/*
-const listenersDisabled = () => grid().forEach(square => square.removeEventListener("click", clickFun));
-
-const olistenersEnabled = () => grid().forEach(square => square.addEventListener("click", clickFunO));
-const olistenersDisabled = () => grid().forEach(square => square.removeEventListener("click", clickFunO));
-
-
-
-const emptySquare = () => grid().filter(square => square.innerText == "");
-
-const sameCheck = (arr) => arr.every(square => square.innerText == arr[0].innerText && square.innerText != "");
-
-const yourMove = (index, letter) => grid()[index].innerText = letter;
-
-
-const clickFun = (event) => {
-    listenersEnabled();
-    olistenersDisabled();
-    console.log(event.target.id);
-    console.log(event.target.innerText);
-    if (event.target.innerText == 'x' || 'o')
-    {
-    //listenersDisabled();
-    yourMove(squareId(event.target), "x");
-    }
-    else
-    {
-        //yourMove(squareId(event.target), "x");
-        listenersDisabled();
-    }
-    //clickFunO();
-}
-
-const clickFunO = (event) => {
-    olistenersEnabled();
-    listenersDisabled();
-    console.log(event.target.id);
-    //yourMove(squareId(event.target), "o");
-    if (event.target.innerText = 'x' || 'o')
-    {
-    olistenersDisabled();
-    //yourMove(squareId(event.target), "x");
-    }
-    else
-    {
-        yourMove(squareId(event.target), "o");
-    }
-    clickFun();
-}*/
-
-
-
-//listenersEnabled();
-
-/*
-
-
-*/
