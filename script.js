@@ -91,9 +91,14 @@ function handlePlayerSwitch()
 {
     currentPlayer = currentPlayer == "X" ? "O" : "X";
 }
-const defaultState = () =>
+function defaultState()
 {
-    squareGet.innerText = "";
+    console.log("button has been clicked")
+    currentGame = ["", "", "", "", "", "", "", "", ""];
+    document.querySelectorAll(".game-square").forEach(square => square.innerText = "");
+    document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+    currentPlayer = "X";
+    GameOn = true;
 }
 
 restartGet.addEventListener("click", defaultState);
