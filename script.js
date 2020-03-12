@@ -52,13 +52,25 @@ function handleWinCon() {
         winnerGet.innerText = currentPlayer;
         GameOn = false;
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
-        setTimeout(alert(winMessage()),100);
+        //setTimeout(alert(winMessage()),100);
+        if (currentPlayer == "X")
+        {
+            //scoreX += 1;
+            console.log(getScoreX.innerText);
+        getScoreX.innerText = scoreX;
+        }
+        else //if (currentPlayer = "O")
+        {
+            //scoreO += 1;
+            console.log(getScoreO.innerText);
+        getScoreO.innerText = scoreO;
+        } 
         return;
     }
     let drawGame = !currentGame.includes("");
     if (drawGame)
     {
-        alert(catsGame());
+        //alert(catsGame());
         GameOn = false;
         winnerGet.innerText = "Cats Game!"
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
@@ -107,6 +119,20 @@ function defaultState()
 }
 
 restartGet.addEventListener("click", defaultState);
+
+function updateScoreboard()
+{
+    let scoreX = localStorage.getItem("scoreX")
+    let scoreO =  localStorage.getItem("scoreO")
+    if (scoreX != null)
+    {
+        getScoreX.innerText = scoreX;
+    }
+    if (scoreO != null)
+    {
+        getScoreO.innerText = scoreO;
+    }
+}
 
 document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
 
