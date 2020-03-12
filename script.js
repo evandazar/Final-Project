@@ -22,6 +22,10 @@ let winnerGet = document.getElementById("winner");
 
 let currentGame = ["", "", "", "", "", "", "", "", ""];
 
+let scoreX = localStorage.getItem("scoreX");
+
+let scoreO =  localStorage.getItem("scoreO");
+
 let GameOn = true;
 
 const winMessage = () => currentPlayer + " has won";
@@ -55,17 +59,38 @@ function handleWinCon() {
         //setTimeout(alert(winMessage()),100);
         if (currentPlayer == "X")
         {
+            
             //scoreX += 1;
-            console.log(getScoreX.innerText);
-        getScoreX.innerText = scoreX;
+            if (localStorage.getItem("scoreX")== null)
+            {
+                localStorage.setItem("scoreX", 1);
+            }
+            else
+            {
+                let currentScoreX = parseInt(localStorage.getItem("scoreX"));
+                currentScoreX++;
+                localStorage.setItem("scoreX", currentScoreX);
+            }
+            //console.log(getScoreX.innerText);
+        console.log(getScoreX.innerText);
         }
         else //if (currentPlayer = "O")
         {
             //scoreO += 1;
+            if (localStorage.getItem("scoreO")== null)
+            {
+                localStorage.setItem("scoreO", 1);
+            }
+            else
+            {
+                let currentScoreO = parseInt(localStorage.getItem("scoreO"));
+                currentScoreO++;
+                localStorage.setItem("scoreO", currentScoreO);
+            }
             console.log(getScoreO.innerText);
-        getScoreO.innerText = scoreO;
+
         } 
-        return;
+        updateScoreboard();
     }
     let drawGame = !currentGame.includes("");
     if (drawGame)
@@ -120,17 +145,17 @@ function defaultState()
 
 restartGet.addEventListener("click", defaultState);
 
+updateScoreboard();
+
 function updateScoreboard()
 {
-    let scoreX = localStorage.getItem("scoreX")
-    let scoreO =  localStorage.getItem("scoreO")
-    if (scoreX != null)
+    if (localStorage.getItem("scoreX") != null)
     {
-        getScoreX.innerText = scoreX;
+        getScoreX.innerText = localStorage.getItem("scoreX");
     }
-    if (scoreO != null)
+    if (localStorage.getItem("scoreO") != null)
     {
-        getScoreO.innerText = scoreO;
+        getScoreO.innerText = localStorage.getItem("scoreO");
     }
 }
 
