@@ -36,14 +36,14 @@ restartGet.addEventListener("click", defaultState);
 
 updateScoreboard();
 
-document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+document.querySelectorAll(".game-square").forEach(square => square.addEventListener("click", handleClick));
 
 function defaultState()
 {
     console.log("button has been clicked")
     currentGame = ["", "", "", "", "", "", "", "", ""];
     document.querySelectorAll(".game-square").forEach(square => square.innerText = "");
-    document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
+    document.querySelectorAll(".game-square").forEach(square => square.addEventListener("click", handleClick));
     currentPlayer = "X";
     winnerGet.innerText = "";
     GameOn = true;
@@ -72,7 +72,7 @@ function handleWinCon() {
         console.log(currentPlayer + " has won")
         winnerGet.innerText = currentPlayer;
         GameOn = false;
-        document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
+        document.querySelectorAll(".game-square").forEach(square => square.removeEventListener("click", handleClick));
         if (currentPlayer == "X")
         {
             if (localStorage.getItem("scoreX")== null)
@@ -109,7 +109,7 @@ function handleWinCon() {
     {
         GameOn = false;
         winnerGet.innerText = "Cats Game!"
-        document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
+        document.querySelectorAll(".game-square").forEach(square => square.removeEventListener("click", handleClick));
         return;
     }
     handlePlayerSwitch();
@@ -124,7 +124,7 @@ function handleClick(clickedSquareEvent)
     );
     if (squareClicked.innerText != "")
     {
-        squareClicked.removeEventListener('click', handleClick);
+        squareClicked.removeEventListener("click", handleClick);
     } 
     console.log(squareClickedId);
     handleCurrentPlayer(squareClicked, squareClickedId);
