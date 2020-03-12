@@ -18,6 +18,8 @@ let squareGet = document.getElementById("game-square");
 
 let restartGet = document.getElementById("button-play-again");
 
+let winnerGet = document.getElementById("winner");
+
 let currentGame = ["", "", "", "", "", "", "", "", ""];
 
 let GameOn = true;
@@ -47,6 +49,7 @@ function handleWinCon() {
     if (playerWon)
     {
         console.log(currentPlayer + " has won")
+        winnerGet.innerText = currentPlayer;
         GameOn = false;
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
         setTimeout(alert(winMessage()),100);
@@ -57,6 +60,7 @@ function handleWinCon() {
     {
         alert(catsGame());
         GameOn = false;
+        winnerGet.innerText = "Cats Game!"
         document.querySelectorAll('.game-square').forEach(square => square.removeEventListener('click', handleClick));
         return;
     }
@@ -74,10 +78,10 @@ function handleClick(clickedSquareEvent)
     {
         squareClicked.removeEventListener('click', handleClick);
     } 
-    if (currentGame[squareClickedId] != "" || !GameOn)
+    /*if (currentGame[squareClickedId] != "" || !GameOn)
     {
         return;
-    }
+    }*/
     console.log(squareClickedId);
     handleCurrentPlayer(squareClicked, squareClickedId);
     //setTimeout(handleWinCon(), 25);
@@ -98,6 +102,7 @@ function defaultState()
     document.querySelectorAll(".game-square").forEach(square => square.innerText = "");
     document.querySelectorAll('.game-square').forEach(square => square.addEventListener('click', handleClick));
     currentPlayer = "X";
+    winnerGet.innerText = "";
     GameOn = true;
 }
 
